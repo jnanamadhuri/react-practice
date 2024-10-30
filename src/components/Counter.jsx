@@ -11,7 +11,7 @@
 //   return (
 //     <div className="counter">
 //       <h1>{Count}</h1>
-//       <button onClick={Increment}>Increment</button>
+//       <button onClick={Increment}>Increment</button>NPM
 //       <button onClick={Reset}> Reset</button>
 //       <button onClick={Decrement}> Decrement</button>
 //     </div>
@@ -63,26 +63,54 @@
 //     </div>
 //   )
 // }
- import {useState} from 'react'
+ import {useEffect, useState} from 'react'
  
- export const Counter = () => {
-  const [movies, setmovies] = useState(
-   [
-    {id:1,name:"spider",rating:8},
-    {id:2,name:"rrr",rating:9},
-    {id:3,name:"rolex",rating:8}
-   ]
+//  export const Counter = () => {
+//   const [movies, setmovies] = useState(
+//    [
+//     {id:1,name:"spider",rating:8},
+//     {id:2,name:"rrr",rating:9},
+//     {id:3,name:"rolex",rating:8}
+//    ]
+//   )
+//   const HandleClick =() =>{
+//     setmovies(movies.map(m => m.id===1? {...movies,name:"john wick"}:m ))
+//   }
+//    return (
+//      <div>
+//       {movies.map((m) => (
+//         <li key={Math.random()}>{m.name}</li>
+//       ))}
+//       <button onClick={HandleClick}>CHANGE</button>
+//      </div>
+//    )
+//  }
+
+export const Counter = () => {
+
+  const [name,setName]=useState(() => {
+    const savedName = localStorage.getItem("name")
+    return savedName ? JSON.parse(savedName) : ""
+  });
+
+  useEffect(()=>{
+    localStorage.setItem("name",JSON.stringify(name))
+  },[name]
   )
-  const HandleClick =() =>{
-    setmovies(movies.map(m => m.id===1? {...movies,name:"john wick"}:m ))
+
+  const HandleChange =(event) =>{
+    setName(event.target.value)
   }
-   return (
-     <div>
-      {movies.map((m) => (
-        <li key={Math.random()}>{m.name}</li>
-      ))}
-      <button onClick={HandleClick}>CHANGE</button>
-     </div>
-   )
- }
- 
+
+  const HandleClear =()=>{
+    setName("")
+  }
+
+  return (
+    <div>
+    <h1>YOUR NAME:{name}</h1>
+    <input type="text" value={name} onChange={HandleChange} placeholder='ENTER YOUR NAME' />
+    <button onClick={HandleClear} >CLEAR NAME</button>
+    </div>
+  )
+}

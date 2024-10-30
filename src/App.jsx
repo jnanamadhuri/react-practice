@@ -1,8 +1,8 @@
-import { Counter } from "./components/Counter";
+import ShoppingList from "./components/ShoppingList.jsx";
 const App = () =>{
   return(
     <section>
-      <Counter/>
+      <ShoppingList/>
     </section>
   )
 }
