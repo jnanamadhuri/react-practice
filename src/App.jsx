@@ -1,8 +1,8 @@
-import ShoppingList from "./components/ShoppingList.jsx";
+import Portal from "./components/Portal.jsx";
 const App = () =>{
   return(
     <section>
-      <ShoppingList/>
+      <Portal/>
     </section>
   )
 }
