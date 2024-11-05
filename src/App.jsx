@@ -1,8 +1,8 @@
-import Portal from "./components/Portal.jsx";
+import FetchDataEffect from "./components/FetchDataEffect.jsx";
 const App = () =>{
   return(
     <section>
-      <Portal/>
+      <FetchDataEffect/>
     </section>
   )
 }
